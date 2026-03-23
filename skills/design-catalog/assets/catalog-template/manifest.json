@@ -1,0 +1,18 @@
+{
+  "version": 2,
+  "project": {
+    "name": "Untitled Project",
+    "brief": ""
+  },
+  "defaults": {
+    "option_count": 4,
+    "palette_family_count": 6,
+    "palette_modes": [
+      "light",
+      "dark"
+    ]
+  },
+  "palette_families": [],
+  "selected_design_id": null,
+  "generations": []
+}

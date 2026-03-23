@@ -1,0 +1,74 @@
+:root {
+  --color-bg: #f5f1e8;
+  --color-surface: #fffaf1;
+  --color-surface-alt: #ede4d3;
+  --color-text: #1f1a17;
+  --color-text-muted: #695d53;
+  --color-accent: #8c5e34;
+  --color-accent-contrast: #fff8ef;
+  --color-border: rgba(31, 26, 23, 0.14);
+  --color-selected: rgba(140, 94, 52, 0.14);
+  --color-note: #b07d44;
+  --color-danger: #a64632;
+  --color-success: #28624a;
+}
+
+[data-palette="warm-walnut"] {
+  --color-bg: #f5f1e8;
+  --color-surface: #fffaf1;
+  --color-surface-alt: #ede4d3;
+  --color-text: #1f1a17;
+  --color-text-muted: #695d53;
+  --color-accent: #8c5e34;
+  --color-accent-contrast: #fff8ef;
+  --color-border: rgba(31, 26, 23, 0.14);
+  --color-selected: rgba(140, 94, 52, 0.14);
+  --color-note: #b07d44;
+  --color-danger: #a64632;
+  --color-success: #28624a;
+}
+
+[data-palette="midnight-amp"] {
+  --color-bg: #101217;
+  --color-surface: #171b23;
+  --color-surface-alt: #202633;
+  --color-text: #f5f3ef;
+  --color-text-muted: #c0b9ae;
+  --color-accent: #dd8f3d;
+  --color-accent-contrast: #16120d;
+  --color-border: rgba(245, 243, 239, 0.12);
+  --color-selected: rgba(221, 143, 61, 0.16);
+  --color-note: #87b8ff;
+  --color-danger: #e67664;
+  --color-success: #5ab38c;
+}
+
+[data-palette="sage-paper"] {
+  --color-bg: #edf0e6;
+  --color-surface: #f8faf4;
+  --color-surface-alt: #dde5d4;
+  --color-text: #20271e;
+  --color-text-muted: #5d6959;
+  --color-accent: #7a5b41;
+  --color-accent-contrast: #f7f6f0;
+  --color-border: rgba(32, 39, 30, 0.14);
+  --color-selected: rgba(122, 91, 65, 0.12);
+  --color-note: #8b6f52;
+  --color-danger: #a55344;
+  --color-success: #42674c;
+}
+
+[data-palette="signal-clean"] {
+  --color-bg: #f4f6f8;
+  --color-surface: #ffffff;
+  --color-surface-alt: #e7ebef;
+  --color-text: #142235;
+  --color-text-muted: #596779;
+  --color-accent: #ff6a2a;
+  --color-accent-contrast: #fff4ef;
+  --color-border: rgba(20, 34, 53, 0.12);
+  --color-selected: rgba(255, 106, 42, 0.12);
+  --color-note: #2d6cdf;
+  --color-danger: #c8473c;
+  --color-success: #23845f;
+}

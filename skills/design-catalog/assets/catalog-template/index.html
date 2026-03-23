@@ -1,0 +1,684 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Design Catalog</title>
+    <style>
+      :root {
+        color-scheme: dark;
+        font-family: "IBM Plex Sans", "Segoe UI", sans-serif;
+        --app-bg: #171c25;
+        --app-panel: #202733;
+        --app-border: rgba(255, 255, 255, 0.1);
+        --app-border-strong: rgba(255, 255, 255, 0.16);
+        --app-text: #eef3fb;
+        --app-muted: #a9b6c9;
+        --app-accent: #f3f6fb;
+        --app-accent-text: #0d1117;
+        --app-shadow: 0 18px 40px rgba(0, 0, 0, 0.22);
+        --app-radius-xl: 28px;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        background:
+          radial-gradient(circle at top, rgba(255, 255, 255, 0.05), transparent 28%),
+          var(--app-bg);
+        color: var(--app-text);
+      }
+
+      a,
+      button,
+      input,
+      select {
+        font: inherit;
+      }
+
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      .page {
+        min-height: 100vh;
+        display: grid;
+        grid-template-rows: auto 1fr;
+      }
+
+      .topbar {
+        position: sticky;
+        top: 0;
+        z-index: 20;
+        display: flex;
+        justify-content: space-between;
+        gap: 18px;
+        align-items: end;
+        padding: 16px 24px;
+        background: rgba(23, 28, 37, 0.82);
+        backdrop-filter: blur(18px);
+        border-bottom: 1px solid var(--app-border);
+      }
+
+      .filters {
+        display: grid;
+        grid-template-columns: 180px 160px 160px 160px minmax(220px, 1fr);
+        gap: 12px;
+        flex: 1;
+      }
+
+      .control {
+        display: grid;
+        gap: 7px;
+      }
+
+      .control label {
+        color: var(--app-muted);
+        font-size: 0.72rem;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+      }
+
+      .control input {
+        min-width: 0;
+        height: 44px;
+        padding: 0 14px;
+        border-radius: 14px;
+        border: 1px solid var(--app-border);
+        background: var(--app-panel);
+        color: var(--app-text);
+        outline: none;
+      }
+
+      .select-shell {
+        position: relative;
+      }
+
+      .select-shell select {
+        display: none;
+      }
+
+      .select-trigger {
+        width: 100%;
+        height: 44px;
+        padding: 0 14px;
+        border-radius: 14px;
+        border: 1px solid var(--app-border);
+        background: var(--app-panel);
+        color: var(--app-text);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        text-align: left;
+      }
+
+      .select-trigger::after {
+        content: "";
+        width: 8px;
+        height: 8px;
+        border-right: 2px solid var(--app-muted);
+        border-bottom: 2px solid var(--app-muted);
+        transform: rotate(45deg) translateY(-2px);
+        flex: 0 0 auto;
+      }
+
+      .select-shell.open .select-trigger {
+        border-color: var(--app-border-strong);
+      }
+
+      .select-menu {
+        position: absolute;
+        top: calc(100% + 8px);
+        left: 0;
+        right: 0;
+        z-index: 30;
+        display: none;
+        padding: 8px;
+        border-radius: 16px;
+        border: 1px solid var(--app-border-strong);
+        background: #242c38;
+        box-shadow: 0 18px 36px rgba(0, 0, 0, 0.24);
+      }
+
+      .select-shell.open .select-menu {
+        display: grid;
+        gap: 4px;
+      }
+
+      .select-option {
+        min-height: 38px;
+        padding: 0 12px;
+        border: 0;
+        border-radius: 10px;
+        background: transparent;
+        color: var(--app-text);
+        text-align: left;
+      }
+
+      .select-option:hover,
+      .select-option[aria-selected="true"] {
+        background: rgba(255, 255, 255, 0.08);
+      }
+
+      .catalog {
+        display: grid;
+        gap: 28px;
+        padding: 16px 24px 32px;
+        align-content: start;
+      }
+
+      .generation {
+        display: grid;
+        gap: 12px;
+        align-content: start;
+      }
+
+      .generation-head {
+        display: flex;
+        justify-content: space-between;
+        gap: 16px;
+        align-items: center;
+      }
+
+      .generation-title {
+        display: grid;
+        gap: 4px;
+      }
+
+      .generation-title h2 {
+        margin: 0;
+        font-size: 1.18rem;
+        letter-spacing: -0.02em;
+      }
+
+      .generation-title p,
+      .generation-meta {
+        margin: 0;
+        color: var(--app-muted);
+        font-size: 0.92rem;
+      }
+
+      .generation-row {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+        gap: 18px;
+        align-items: start;
+      }
+
+      .tile {
+        position: relative;
+        align-self: start;
+      }
+
+      .tile-frame {
+        --preview-scale: 0.318;
+        display: block;
+        width: 100%;
+        position: relative;
+        overflow: hidden;
+        aspect-ratio: 16 / 10;
+        border-radius: var(--app-radius-xl);
+        border: 1px solid var(--app-border);
+        background: #0d1117;
+        box-shadow: var(--app-shadow);
+      }
+
+      .tile-frame iframe {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: calc(100% / var(--preview-scale));
+        height: calc(100% / var(--preview-scale));
+        border: 0;
+        transform: scale(var(--preview-scale));
+        transform-origin: top left;
+        pointer-events: none;
+        background: #0d1117;
+        transition: transform 180ms ease;
+      }
+
+      .tile-frame::after {
+        content: "";
+        position: absolute;
+        inset: auto 0 0;
+        height: 56%;
+        background: linear-gradient(180deg, transparent, rgba(0, 0, 0, 0.92));
+        pointer-events: none;
+        opacity: 0;
+        transition: opacity 180ms ease;
+      }
+
+      .tile-caption {
+        position: absolute;
+        inset: auto 0 0;
+        z-index: 1;
+        display: grid;
+        gap: 8px;
+        padding: 18px 18px 16px;
+        opacity: 0;
+        transform: translateY(10px);
+        color: #ffffff;
+        text-shadow: 0 1px 2px rgba(0, 0, 0, 0.45);
+        transition:
+          opacity 180ms ease,
+          transform 180ms ease;
+      }
+
+      .tile-heading {
+        display: flex;
+        justify-content: space-between;
+        gap: 12px;
+        align-items: baseline;
+      }
+
+      .tile-heading h3 {
+        margin: 0;
+        font-size: 1.05rem;
+        letter-spacing: -0.02em;
+        color: #ffffff;
+      }
+
+      .tile-heading span,
+      .tile-fit,
+      .tile-prompt {
+        color: rgba(255, 255, 255, 0.78);
+        font-size: 0.88rem;
+      }
+
+      .tile-thesis {
+        margin: 0;
+        color: rgba(255, 255, 255, 0.92);
+        line-height: 1.55;
+      }
+
+      .tile-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        padding-top: 4px;
+      }
+
+      .button {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 38px;
+        padding: 0 14px;
+        border-radius: 999px;
+        border: 1px solid var(--app-border-strong);
+        background: transparent;
+        color: var(--app-text);
+      }
+
+      .button.primary {
+        background: var(--app-accent);
+        color: var(--app-accent-text);
+        border-color: transparent;
+      }
+
+      .tile:hover .tile-frame iframe,
+      .tile:focus-within .tile-frame iframe {
+        transform: scale(0.33);
+      }
+
+      .tile:hover .tile-frame::after,
+      .tile:focus-within .tile-frame::after,
+      .tile:hover .tile-caption,
+      .tile:focus-within .tile-caption {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .empty {
+        padding: 18px 0;
+        color: var(--app-muted);
+      }
+
+      @media (max-width: 980px) {
+        .filters {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+      }
+
+      @media (max-width: 640px) {
+        .topbar,
+        .catalog {
+          padding-left: 16px;
+          padding-right: 16px;
+        }
+
+        .topbar,
+        .generation-head,
+        .tile-heading {
+          display: grid;
+        }
+
+        .filters {
+          grid-template-columns: 1fr;
+        }
+
+        .generation-row {
+          grid-template-columns: 1fr;
+          align-items: start;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="page">
+      <header class="topbar">
+        <section class="filters">
+          <div class="control">
+            <label for="palette-family">Palette</label>
+            <div class="select-shell">
+              <button class="select-trigger" type="button"></button>
+              <div class="select-menu"></div>
+              <select id="palette-family"></select>
+            </div>
+          </div>
+          <div class="control">
+            <label for="palette-mode">Mode</label>
+            <div class="select-shell">
+              <button class="select-trigger" type="button"></button>
+              <div class="select-menu"></div>
+              <select id="palette-mode">
+                <option value="light">Light</option>
+                <option value="dark">Dark</option>
+              </select>
+            </div>
+          </div>
+          <div class="control">
+            <label for="generation">Generation</label>
+            <div class="select-shell">
+              <button class="select-trigger" type="button"></button>
+              <div class="select-menu"></div>
+              <select id="generation"></select>
+            </div>
+          </div>
+          <div class="control">
+            <label for="artifact-type">Artifact</label>
+            <div class="select-shell">
+              <button class="select-trigger" type="button"></button>
+              <div class="select-menu"></div>
+              <select id="artifact-type">
+                <option value="">All</option>
+                <option value="concept">Concept</option>
+                <option value="screen">Screen</option>
+                <option value="flow">Flow</option>
+                <option value="state">State</option>
+              </select>
+            </div>
+          </div>
+          <div class="control">
+            <label for="search">Search</label>
+            <input id="search" type="search" placeholder="Title, thesis, or fit" />
+          </div>
+        </section>
+      </header>
+
+      <main class="catalog" id="catalog"></main>
+    </div>
+
+    <script>
+      const manifestUrl = "./manifest.json";
+      const paletteFamilyStorageKey = "design-catalog-palette-family";
+      const paletteModeStorageKey = "design-catalog-palette-mode";
+      const paletteFamilyEl = document.getElementById("palette-family");
+      const paletteModeEl = document.getElementById("palette-mode");
+      const generationEl = document.getElementById("generation");
+      const artifactEl = document.getElementById("artifact-type");
+      const searchEl = document.getElementById("search");
+      const catalogEl = document.getElementById("catalog");
+      const selectShells = new Map();
+
+      const slugify = (value) =>
+        value
+          .toLowerCase()
+          .replace(/[^a-z0-9]+/g, "-")
+          .replace(/^-+|-+$/g, "");
+
+      const designMarkdown = (entry) => {
+        const spec = entry.design_spec || {};
+        const section = (title, items) =>
+          Array.isArray(items) && items.length
+            ? `## ${title}\n\n${items.map((item) => `- ${item}`).join("\n")}\n\n`
+            : "";
+
+        return [
+          "# DESIGN.md\n",
+          "## Selected Direction\n",
+          `${entry.title}\n`,
+          "## Visual Thesis\n",
+          `${spec.visual_thesis || entry.thesis || ""}\n`,
+          section("Hard Rules", spec.hard_rules),
+          section("Reject Patterns", spec.reject_patterns),
+          section("Layout System", spec.layout_system),
+          section("Surface Rules", spec.surface_rules),
+          section("Typography Rules", spec.typography_rules),
+          section("State Rules", spec.state_rules),
+          section("Content Rules", spec.content_rules),
+          section("Accessibility Rules", spec.accessibility_rules),
+          section("Implementation Order", spec.implementation_order),
+          section("Validation Checks", spec.validation_checks)
+        ].join("");
+      };
+
+      const downloadMarkdown = (entry) => {
+        const blob = new Blob([designMarkdown(entry)], { type: "text/markdown;charset=utf-8" });
+        const url = URL.createObjectURL(blob);
+        const link = document.createElement("a");
+        link.href = url;
+        link.download = `${slugify(entry.id || entry.title || "design")}-DESIGN.md`;
+        link.click();
+        URL.revokeObjectURL(url);
+      };
+
+      const closeAllSelects = () => {
+        selectShells.forEach(({ shell }) => shell.classList.remove("open"));
+      };
+
+      const syncCustomSelect = (selectEl) => {
+        const shellData = selectShells.get(selectEl.id);
+        if (!shellData) return;
+        const { trigger, menu } = shellData;
+        const selectedOption = selectEl.options[selectEl.selectedIndex];
+        trigger.textContent = selectedOption ? selectedOption.textContent : "";
+        menu.innerHTML = "";
+        Array.from(selectEl.options).forEach((option) => {
+          const button = document.createElement("button");
+          button.type = "button";
+          button.className = "select-option";
+          button.textContent = option.textContent;
+          button.setAttribute("aria-selected", option.selected ? "true" : "false");
+          button.addEventListener("click", () => {
+            selectEl.value = option.value;
+            syncCustomSelect(selectEl);
+            shellData.shell.classList.remove("open");
+            selectEl.dispatchEvent(new Event("change"));
+          });
+          menu.appendChild(button);
+        });
+      };
+
+      document.querySelectorAll(".select-shell select").forEach((selectEl) => {
+        const shell = selectEl.closest(".select-shell");
+        const trigger = shell.querySelector(".select-trigger");
+        const menu = shell.querySelector(".select-menu");
+        selectShells.set(selectEl.id, { shell, trigger, menu });
+        trigger.addEventListener("click", (event) => {
+          event.stopPropagation();
+          const isOpen = shell.classList.contains("open");
+          closeAllSelects();
+          if (!isOpen) shell.classList.add("open");
+        });
+        selectEl.addEventListener("change", () => syncCustomSelect(selectEl));
+        syncCustomSelect(selectEl);
+      });
+
+      document.addEventListener("click", () => closeAllSelects());
+
+      const populateSelect = (el, items, selected = "") => {
+        el.innerHTML = "";
+        for (const item of items) {
+          const opt = document.createElement("option");
+          opt.value = item.value;
+          opt.textContent = item.label;
+          if (item.value === selected) opt.selected = true;
+          el.appendChild(opt);
+        }
+        syncCustomSelect(el);
+      };
+
+      const formatDate = (value) => {
+        if (!value) return "";
+        const date = new Date(value);
+        if (Number.isNaN(date.getTime())) return "";
+        return date.toLocaleDateString(undefined, {
+          year: "numeric",
+          month: "short",
+          day: "numeric"
+        });
+      };
+
+      const paletteHref = (path) => {
+        const url = new URL(`./${path}`, window.location.href);
+        if (paletteFamilyEl.value) url.searchParams.set("palette", paletteFamilyEl.value);
+        if (paletteModeEl.value) url.searchParams.set("mode", paletteModeEl.value);
+        return url.toString();
+      };
+
+      const createTile = (entry, selectedDesignId) => {
+        const tile = document.createElement("article");
+        tile.className = "tile";
+        const agentPrompt = `use design ${entry.id} from .designs`;
+        tile.innerHTML = `
+          <div class="tile-frame">
+            <iframe src="${paletteHref(entry.html_path)}" loading="lazy" title="${entry.title} preview"></iframe>
+            <div class="tile-caption">
+              <div class="tile-heading">
+                <h3>${entry.title}</h3>
+                <span>${entry.id === selectedDesignId ? "Selected" : entry.status || "draft"}</span>
+              </div>
+              <p class="tile-thesis">${entry.thesis || ""}</p>
+              <div class="tile-fit">${entry.user_fit || ""}</div>
+              <div class="tile-actions">
+                <a class="button" href="${paletteHref(entry.html_path)}" target="_blank" rel="noreferrer">Open Mock</a>
+                <a class="button" href="./${entry.guide_path}" target="_blank" rel="noreferrer">Guide</a>
+                <button class="button primary" type="button" data-download="${entry.id}">Download DESIGN.md</button>
+                <button class="button" type="button" data-copy="${entry.id}">Copy Prompt</button>
+              </div>
+              <div class="tile-prompt"><code>${agentPrompt}</code></div>
+            </div>
+          </div>
+        `;
+        tile.querySelector("[data-download]").addEventListener("click", () => downloadMarkdown(entry));
+        tile.querySelector("[data-copy]").addEventListener("click", async () => {
+          await navigator.clipboard.writeText(agentPrompt);
+        });
+        return tile;
+      };
+
+      const matchesFilters = (entry, filters) => {
+        const text = [entry.title, entry.thesis, entry.user_fit].join(" ").toLowerCase();
+        if (filters.artifactType && entry.artifact_type !== filters.artifactType) return false;
+        if (filters.search && !text.includes(filters.search)) return false;
+        return true;
+      };
+
+      const createGenerationSection = (generation, entries, selectedDesignId) => {
+        const section = document.createElement("section");
+        section.className = "generation";
+        section.innerHTML = `
+          <div class="generation-head">
+            <div class="generation-title">
+              <h2>${generation.label || generation.id}</h2>
+              <p>${formatDate(generation.created_at) || "Undated release"}</p>
+            </div>
+            <div class="generation-meta">${entries.length} option${entries.length === 1 ? "" : "s"}</div>
+          </div>
+          <div class="generation-row"></div>
+        `;
+        const row = section.querySelector(".generation-row");
+        entries.forEach((entry) => row.appendChild(createTile(entry, selectedDesignId)));
+        return section;
+      };
+
+      const render = (manifest) => {
+        const filters = {
+          generationId: generationEl.value,
+          artifactType: artifactEl.value,
+          search: searchEl.value.trim().toLowerCase()
+        };
+
+        const generations = (manifest.generations || [])
+          .filter((generation) => !filters.generationId || generation.id === filters.generationId)
+          .map((generation) => {
+            const entries = (generation.entries || []).filter((entry) => matchesFilters(entry, filters));
+            return { generation, entries };
+          })
+          .filter(({ entries }) => entries.length > 0);
+
+        catalogEl.innerHTML = "";
+
+        if (!generations.length) {
+          catalogEl.innerHTML = `<div class="empty">No directions match the current filters.</div>`;
+          return;
+        }
+
+        generations.forEach(({ generation, entries }) => {
+          catalogEl.appendChild(createGenerationSection(generation, entries, manifest.selected_design_id));
+        });
+      };
+
+      fetch(manifestUrl)
+        .then((res) => res.json())
+        .then((manifest) => {
+          const storedFamily = localStorage.getItem(paletteFamilyStorageKey);
+          const storedMode = localStorage.getItem(paletteModeStorageKey);
+          const initialFamily = storedFamily || "warm-walnut";
+          const initialMode = storedMode || "light";
+
+          populateSelect(
+            paletteFamilyEl,
+            (manifest.palette_families || []).map((family) => ({
+              value: family.id,
+              label: family.label
+            })),
+            initialFamily
+          );
+
+          paletteModeEl.value = initialMode;
+          syncCustomSelect(paletteModeEl);
+
+          populateSelect(generationEl, [
+            { value: "", label: "All generations" },
+            ...(manifest.generations || []).map((generation) => ({
+              value: generation.id,
+              label: generation.label || generation.id
+            }))
+          ]);
+
+          paletteFamilyEl.addEventListener("change", () => {
+            localStorage.setItem(paletteFamilyStorageKey, paletteFamilyEl.value);
+            render(manifest);
+          });
+
+          paletteModeEl.addEventListener("change", () => {
+            localStorage.setItem(paletteModeStorageKey, paletteModeEl.value);
+            render(manifest);
+          });
+
+          generationEl.addEventListener("change", () => render(manifest));
+          artifactEl.addEventListener("change", () => render(manifest));
+          searchEl.addEventListener("input", () => render(manifest));
+
+          render(manifest);
+        });
+    </script>
+  </body>
+</html>
