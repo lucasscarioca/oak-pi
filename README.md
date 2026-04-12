@@ -1,17 +1,48 @@
 # Artifacts
 
-Collection of agentic coding artifacts I've created and use on my day to day. This is not an extensive list of what I use, only the ones I built.
+Collection of coding artifacts and agent config I use.
 
-My global rules: `global.AGENTS.md`
+Note: this repo is a curated collection of config, extensions, and skills I use. Not every item here was originally created by me.
 
-## Available Skills
+Agent rules:
+- Pi: `pi.AGENTS.md`
+- OpenCode: `opencode.AGENTS.md`
 
-### `design-catalog`
+## Pi setup in this repo
 
-- Name: Design Catalog
-- Description: Generates multiple frontend design directions, stores them in a local catalog, and exports a strict `DESIGN.md` for the selected direction.
-- Install:
+- `pi-agents/` — my Pi agent presets
+- `pi-extensions/` — Pi extensions I use
+- `skills/` — reusable skills
+- `bootstrap/` — setup scripts for new machines
+
+## Bootstrap Pi config
 
 ```bash
-npx skills@latest add lucasscarioca/artifacts/design-catalog
+./bootstrap/pi/install.sh
+```
+
+Optional custom target:
+
+```bash
+PI_HOME=/some/other/pi-agent-dir ./bootstrap/pi/install.sh
+```
+
+This copies:
+- `pi-agents/*` -> `~/.pi/agent/agents/`
+- `pi-extensions/*` -> `~/.pi/agent/extensions/`
+- `skills/*` -> `~/.pi/agent/skills/`
+
+### Included Pi extensions
+
+- `handoff` — upstream example: [`handoff.ts`](https://github.com/badlogic/pi-mono/blob/main/packages/coding-agent/examples/extensions/handoff.ts)
+- `questionnaire` — upstream example: [`questionnaire.ts`](https://github.com/badlogic/pi-mono/blob/main/packages/coding-agent/examples/extensions/questionnaire.ts)
+- `todo` — upstream example: [`todo.ts`](https://github.com/badlogic/pi-mono/blob/main/packages/coding-agent/examples/extensions/todo.ts)
+- `subagent` — based on: [`examples/extensions/subagent`](https://github.com/badlogic/pi-mono/tree/main/packages/coding-agent/examples/extensions/subagent)
+  - minor adjustments: removed planner, changed default models
+- `pi-web-tools` — `websearch` + `webfetch`, built in this repo
+
+Direct install for `pi-web-tools` also works:
+
+```bash
+pi install github:lucasscarioca/artifacts/pi-extensions/pi-web-tools
 ```

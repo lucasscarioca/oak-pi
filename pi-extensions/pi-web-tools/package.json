@@ -1,0 +1,41 @@
+{
+  "name": "pi-web-tools",
+  "version": "0.1.0",
+  "description": "Pi extension package with websearch and webfetch tools backed by Exa and Codex",
+  "type": "module",
+  "main": "./src/index.ts",
+  "files": [
+    "src/",
+    "README.md"
+  ],
+  "scripts": {
+    "test": "bun test",
+    "typecheck": "tsc --noEmit -p tsconfig.json",
+    "check": "bun test && bunx tsc --noEmit -p tsconfig.json"
+  },
+  "pi": {
+    "extensions": [
+      "./src/index.ts"
+    ]
+  },
+  "peerDependencies": {
+    "@mariozechner/pi-ai": "*",
+    "@mariozechner/pi-coding-agent": "*",
+    "@mariozechner/pi-tui": "*",
+    "@sinclair/typebox": "*"
+  },
+  "devDependencies": {
+    "@mariozechner/pi-ai": "^0.62.0",
+    "@mariozechner/pi-coding-agent": "^0.62.0",
+    "@mariozechner/pi-tui": "^0.62.0",
+    "@sinclair/typebox": "^0.34.48",
+    "@types/node": "^24.6.0",
+    "bun-types": "^1.3.6",
+    "typescript": "^5.9.3"
+  },
+  "engines": {
+    "bun": ">=1.3.0",
+    "node": ">=22"
+  },
+  "license": "MIT"
+}

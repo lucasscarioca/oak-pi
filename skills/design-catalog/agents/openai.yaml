@@ -1,4 +1,0 @@
-interface:
-  display_name: "Design Catalog"
-  short_description: "Generate and browse UI design options"
-  default_prompt: "Use $design-catalog to generate several UI design directions for my product and let me compare them in a local catalog."
