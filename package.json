@@ -1,0 +1,32 @@
+{
+  "name": "oak-pi",
+  "version": "0.1.0",
+  "description": "Pi setup package with reusable extensions and skills",
+  "private": true,
+  "type": "module",
+  "keywords": [
+    "pi-package"
+  ],
+  "pi": {
+    "extensions": [
+      "./extensions/handoff.ts",
+      "./extensions/questionnaire.ts",
+      "./extensions/todo.ts",
+      "./extensions/subagent",
+      "./extensions/web-tools/src/index.ts"
+    ],
+    "skills": [
+      "./skills"
+    ]
+  },
+  "peerDependencies": {
+    "@mariozechner/pi-ai": "*",
+    "@mariozechner/pi-coding-agent": "*",
+    "@mariozechner/pi-tui": "*",
+    "@sinclair/typebox": "*"
+  },
+  "engines": {
+    "node": ">=22"
+  },
+  "license": "MIT"
+}

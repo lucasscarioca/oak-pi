@@ -19,7 +19,7 @@ export async function runCodexDeepSearch(
   seedResults: SearchResultItem[],
   options: CodexRunnerOptions,
 ): Promise<{ summary: string; results: SearchResultItem[] }> {
-  const tmpDir = await mkdtemp(join(tmpdir(), "pi-web-tools-"));
+  const tmpDir = await mkdtemp(join(tmpdir(), "web-tools-"));
   const outputPath = join(tmpDir, "codex-output.json");
   const args = [
     "exec",

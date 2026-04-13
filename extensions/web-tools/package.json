@@ -1,7 +1,7 @@
 {
-  "name": "pi-web-tools",
+  "name": "web-tools",
   "version": "0.1.0",
-  "description": "Pi extension package with websearch and webfetch tools backed by Exa and Codex",
+  "description": "Websearch and webfetch Pi tools used by the oak-pi package",
   "type": "module",
   "main": "./src/index.ts",
   "files": [

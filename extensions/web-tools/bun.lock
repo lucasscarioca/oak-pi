@@ -3,7 +3,7 @@
   "configVersion": 1,
   "workspaces": {
     "": {
-      "name": "pi-web-tools",
+      "name": "web-tools",
       "devDependencies": {
         "@mariozechner/pi-ai": "^0.62.0",
         "@mariozechner/pi-coding-agent": "^0.62.0",

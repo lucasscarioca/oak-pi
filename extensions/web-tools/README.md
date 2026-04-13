@@ -1,9 +1,14 @@
-# pi-web-tools
+# web-tools
 
-Pi extension package with two tools:
+Source for the `websearch` and `webfetch` Pi tools included in the root `oak-pi` package.
 
-- `websearch` — web discovery via Exa, with Codex deep/fallback behavior
-- `webfetch` — URL content retrieval via Exa contents, with curl fallback
+Main install path:
+
+```bash
+pi install git:github.com/lucasscarioca/artifacts
+```
+
+This directory stays as a self-contained dev/test workspace for the web tools implementation.
 
 ## Features
 
@@ -47,20 +52,6 @@ EXA_API_KEY=... pi
 export EXA_API_KEY=...
 export PI_WEB_TOOLS_CODEX_PATH=/absolute/path/to/codex
 pi
-```
-
-## Install in pi
-
-Local path:
-
-```bash
-pi install /absolute/path/to/pi-extensions/pi-web-tools
-```
-
-From GitHub:
-
-```bash
-pi install github:lucasscarioca/artifacts/pi-extensions/pi-web-tools
 ```
 
 ## Tool schemas
