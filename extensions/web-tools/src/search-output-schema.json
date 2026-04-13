@@ -12,7 +12,7 @@
       "items": {
         "type": "object",
         "additionalProperties": false,
-        "required": ["title", "url"],
+        "required": ["title", "url", "snippet"],
         "properties": {
           "title": { "type": "string" },
           "url": { "type": "string" },
