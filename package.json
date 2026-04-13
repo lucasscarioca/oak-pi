@@ -1,6 +1,6 @@
 {
   "name": "oak-pi",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "Pi setup package with reusable extensions and skills",
   "private": true,
   "type": "module",
