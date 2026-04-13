@@ -6,6 +6,8 @@ PI_HOME="${PI_HOME:-$HOME/.pi/agent}"
 
 mkdir -p "$PI_HOME/agents" "$PI_HOME/extensions/subagent" "$PI_HOME/extensions/pi-web-tools" "$PI_HOME/skills"
 
+cp "$ROOT/pi.AGENTS.md" "$PI_HOME/AGENTS.md"
+
 cp "$ROOT/pi-agents/"*.md "$PI_HOME/agents/"
 cp "$ROOT/pi-extensions/handoff.ts" "$PI_HOME/extensions/"
 cp "$ROOT/pi-extensions/questionnaire.ts" "$PI_HOME/extensions/"
@@ -22,6 +24,7 @@ cat <<EOF
 Installed Pi config into: $PI_HOME
 
 Copied:
+- AGENTS.md from pi.AGENTS.md
 - agents from pi-agents/
 - global extensions from pi-extensions/
 - skills from skills/
