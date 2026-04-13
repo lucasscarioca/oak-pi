@@ -57,3 +57,4 @@ This copies only:
 - `subagent` — based on: [`examples/extensions/subagent`](https://github.com/badlogic/pi-mono/tree/main/packages/coding-agent/examples/extensions/subagent)
   - minor adjustments: removed planner, changed default models
 - `web-tools` — `websearch` + `webfetch`, built in this repo
+- `codex-usage` — checks Codex 5h/weekly usage limits and can pin a compact footer summary (requires a local authenticated `codex` CLI or `PI_CODEX_USAGE_BIN`)
