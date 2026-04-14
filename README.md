@@ -19,6 +19,7 @@ pi install git:github.com/lucasscarioca/artifacts
 This installs the resources declared in the root `package.json` manifest:
 - extensions from `extensions/`
 - skills from `skills/`
+- prompt templates from `prompts/`
 
 ## Bootstrap the remaining Pi config
 
@@ -46,6 +47,7 @@ This copies only:
 
 - `agents/` — my Pi agent presets
 - `extensions/` — Pi extensions included in the root package
+- `prompts/` — prompt templates included in the root package
 - `skills/` — reusable skills included in the root package
 - `bootstrap/` — setup scripts for config that is not covered by `pi install`
 
