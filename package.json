@@ -14,7 +14,8 @@
       "./extensions/todo.ts",
       "./extensions/subagent",
       "./extensions/web-tools/src/index.ts",
-      "./extensions/codex-usage"
+      "./extensions/codex-usage",
+      "./extensions/worktrees"
     ],
     "skills": [
       "./skills"

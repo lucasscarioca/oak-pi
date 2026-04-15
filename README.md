@@ -60,3 +60,4 @@ This copies only:
   - minor adjustments: removed planner, changed default models
 - `web-tools` — `websearch` + `webfetch`, built in this repo
 - `codex-usage` — checks Codex 5h/weekly usage limits and can pin a compact footer summary (requires a local authenticated `codex` CLI or `PI_CODEX_USAGE_BIN`)
+- `worktrees` — creates git worktrees with seeded handoff sessions and provides `/worktree`, `/worktrees`, and `pi --worktree`
