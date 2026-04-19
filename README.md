@@ -1,63 +1,52 @@
-# Artifacts
+# oak-pi
 
-Collection of coding artifacts and agent config I use.
+My Pi agent setup package.
 
-Note: this repo is a curated collection of config, extensions, and skills I use. Not every item here was originally created by me.
+## Extensions
 
-Agent rules:
-- Pi: `pi.AGENTS.md`
-- OpenCode: `opencode.AGENTS.md`
+- `subagent` — [README](extensions/subagent/README.md) — delegates work to subagents and surfaces the full final report back to the main agent.
+- `web-tools` — [README](extensions/web-tools/README.md) — `websearch` and `webfetch`; requires `EXA_API_KEY` and an authenticated local `codex` CLI for deep/fallback behavior.
+- `codex-usage` — [README](extensions/codex-usage/README.md) — Codex usage limit helper and footer summary pinning.
+- `worktrees` — [README](extensions/worktrees/README.md) — git worktree helper with seeded sessions.
+- `questionnaire` and `todo` — small utility extensions with no separate README.
 
-## Install Pi setup
-
-Install the root Pi package:
+## Install the package
 
 ```bash
-pi install git:github.com/lucasscarioca/artifacts
+pi install git:github.com/lucasscarioca/oak-pi
 ```
 
-This installs the resources declared in the root `package.json` manifest:
+This installs the resources declared in `package.json`:
 - extensions from `extensions/`
 - skills from `skills/`
 - prompt templates from `prompts/`
 
-## Bootstrap the remaining Pi config
+## Install the global Pi agent config
 
-`pi install` does **not** copy over:
-- `agents/`
-- `pi.AGENTS.md` -> `~/.pi/agent/AGENTS.md`
+`pi install` does **not** copy over the repo-local agent presets or global rules.
 
-Use the bootstrap script for those:
+Use the bootstrap script for that:
 
 ```bash
-./bootstrap/pi/install.sh
+./bootstrap/install-global-agent-config.sh
 ```
 
 Optional custom target:
 
 ```bash
-PI_HOME=/some/other/pi-agent-dir ./bootstrap/pi/install.sh
+PI_HOME=/some/other/pi-agent-dir ./bootstrap/install-global-agent-config.sh
 ```
 
 This copies only:
 - `agents/*` -> `~/.pi/agent/agents/`
-- `pi.AGENTS.md` -> `~/.pi/agent/AGENTS.md`
+- `global.AGENTS.md` -> `~/.pi/agent/AGENTS.md`
 
 ## Repo layout
 
 - `agents/` — my Pi agent presets
-- `extensions/` — Pi extensions included in the root package
-- `prompts/` — prompt templates included in the root package
-- `skills/` — reusable skills included in the root package
-- `bootstrap/` — setup scripts for config that is not covered by `pi install`
+- `global.AGENTS.md` — global agent rules copied into `~/.pi/agent/AGENTS.md`
+- `extensions/` — Pi extensions included in the package
+- `prompts/` — prompt templates included in the package
+- `skills/` — reusable skills included in the package
+- `bootstrap/` — scripts for repo-local config that `pi install` does not copy
 
-### Included Pi extensions
-
-- `handoff` — upstream example: [`handoff.ts`](https://github.com/badlogic/pi-mono/blob/main/packages/coding-agent/examples/extensions/handoff.ts)
-- `questionnaire` — upstream example: [`questionnaire.ts`](https://github.com/badlogic/pi-mono/blob/main/packages/coding-agent/examples/extensions/questionnaire.ts)
-- `todo` — upstream example: [`todo.ts`](https://github.com/badlogic/pi-mono/blob/main/packages/coding-agent/examples/extensions/todo.ts)
-- `subagent` — based on: [`examples/extensions/subagent`](https://github.com/badlogic/pi-mono/tree/main/packages/coding-agent/examples/extensions/subagent)
-  - minor adjustments: removed planner, changed default models
-- `web-tools` — `websearch` + `webfetch`, built in this repo
-- `codex-usage` — checks Codex 5h/weekly usage limits and can pin a compact footer summary (requires a local authenticated `codex` CLI or `PI_CODEX_USAGE_BIN`)
-- `worktrees` — creates git worktrees with seeded handoff sessions and provides `/worktree`, `/worktrees`, and `pi --worktree`

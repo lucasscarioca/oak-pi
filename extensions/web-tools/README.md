@@ -5,7 +5,7 @@ Source for the `websearch` and `webfetch` Pi tools included in the root `oak-pi`
 Main install path:
 
 ```bash
-pi install git:github.com/lucasscarioca/artifacts
+pi install git:github.com/lucasscarioca/oak-pi
 ```
 
 This directory stays as a self-contained dev/test workspace for the web tools implementation.

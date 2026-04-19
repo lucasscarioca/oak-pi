@@ -1,7 +1,7 @@
 {
   "name": "oak-pi",
-  "version": "1.3.0",
-  "description": "Pi setup package with reusable extensions and skills",
+  "version": "1.4.0",
+  "description": "My Pi agent setup package",
   "private": true,
   "type": "module",
   "keywords": [
@@ -9,13 +9,7 @@
   ],
   "pi": {
     "extensions": [
-      "./extensions/handoff.ts",
-      "./extensions/questionnaire.ts",
-      "./extensions/todo.ts",
-      "./extensions/subagent",
-      "./extensions/web-tools/src/index.ts",
-      "./extensions/codex-usage",
-      "./extensions/worktrees"
+      "./extensions"
     ],
     "skills": [
       "./skills"

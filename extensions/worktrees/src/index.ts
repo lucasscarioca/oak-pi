@@ -18,7 +18,7 @@ const WORKTREE_ROOT = ".pi/worktrees";
 const WORKTREE_METADATA_FILE = ".pi-worktree.json";
 const DEFAULT_BRANCH_PREFIX = "worktree";
 
-const HANDOFF_SYSTEM_PROMPT = `You are a context transfer assistant. Given a conversation history and the user's goal for a new thread, generate a focused prompt that:
+const TRANSFER_SYSTEM_PROMPT = `You are a context transfer assistant. Given a conversation history and the user's goal for a new thread, generate a focused prompt that:
 
 1. Summarizes relevant context from the conversation (decisions made, approaches taken, key findings)
 2. Lists any relevant files that were discussed or modified
@@ -192,7 +192,7 @@ async function getAuth(ctx: ExtensionCommandContext): Promise<{ apiKey: string; 
 	return { apiKey, headers };
 }
 
-async function generateHandoffPrompt(ctx: ExtensionCommandContext, goal: string): Promise<string> {
+async function generateTransferPrompt(ctx: ExtensionCommandContext, goal: string): Promise<string> {
 	const conversationText = getConversationText(ctx);
 	const userMessage: Message = {
 		role: "user",
@@ -208,7 +208,7 @@ async function generateHandoffPrompt(ctx: ExtensionCommandContext, goal: string)
 	const auth = await getAuth(ctx);
 	const response = await complete(
 		ctx.model!,
-		{ systemPrompt: HANDOFF_SYSTEM_PROMPT, messages: [userMessage] },
+		{ systemPrompt: TRANSFER_SYSTEM_PROMPT, messages: [userMessage] },
 		{ apiKey: auth.apiKey, headers: auth.headers },
 	);
 
@@ -229,7 +229,7 @@ async function generateWorktreeName(ctx: ExtensionCommandContext, goal: string, 
 		content: [
 			{
 				type: "text",
-				text: `## Goal\n\n${goal}\n\n## Handoff Prompt\n\n${prompt}`,
+				text: `## Goal\n\n${goal}\n\n## Transfer Prompt\n\n${prompt}`,
 			},
 		],
 		timestamp: Date.now(),
@@ -418,10 +418,10 @@ async function createWorktreeFlow(ctx: ExtensionCommandContext, goal: string, ex
 		return;
 	}
 
-	ctx.ui.notify("Generating handoff prompt...", "info");
-	const prompt = await generateHandoffPrompt(ctx, cleanedGoal);
+	ctx.ui.notify("Generating transfer prompt...", "info");
+	const prompt = await generateTransferPrompt(ctx, cleanedGoal);
 	if (!prompt) {
-		ctx.ui.notify("Failed to generate handoff prompt", "error");
+		ctx.ui.notify("Failed to generate transfer prompt", "error");
 		return;
 	}
 
@@ -507,7 +507,7 @@ export default function worktrees(pi: ExtensionAPI) {
 	}
 
 	pi.registerCommand("worktree", {
-		description: "Create a git worktree and seed it with a context handoff",
+		description: "Create a git worktree and seed it with a context transfer",
 		handler: async (args, ctx) => {
 			try {
 				const parsed = parseWorktreeArgs(args);
