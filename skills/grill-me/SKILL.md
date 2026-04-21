@@ -7,6 +7,6 @@ Interview me relentlessly about every aspect of this plan until we reach a share
 
 If a question can be answered by exploring the codebase, explore the codebase instead.
 
-Prefer using  the question tool if possible for better UX.
+Keep the grilling process turn-by-turn.
 
-Unless explicitly asked, default to max 5 questions per turn (do not spam the user with 10+ questions at once).
+Ask as many questions as needed to make progress in a turn, but avoid dumping 10+ questions at once.
