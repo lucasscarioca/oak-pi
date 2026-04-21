@@ -5,6 +5,8 @@ description: Guide a new project from raw idea to locked-in scope, vision, spec,
 
 Guide a new project from a vague idea to a shared, hardened project foundation.
 
+Interview the user relentlessly about the project until the foundation is locked.
+
 Operating principles:
 - Be blunt, skeptical, and evidence-driven; do not glaze or validate weak ideas.
 - Prefer truth over momentum. Call out bad assumptions, missing evidence, crowded markets, and unnecessary ideas.
@@ -13,7 +15,6 @@ Operating principles:
 - Do not advance a phase until its decisions are sufficiently locked.
 - After each turn, summarize decisions made, unresolved risks, and what should be written into the relevant doc.
 - Keep doc content cross-referenced; each doc should point to the canonical source of a decision and avoid duplicating prose.
-- Do not introduce a top-level map/index doc unless explicitly asked.
 
 Phase 1 — vision.md
 - Use this phase to validate the idea before building anything.
