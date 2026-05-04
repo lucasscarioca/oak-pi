@@ -1,0 +1,7 @@
+interface:
+  display_name: "Shipout"
+  short_description: "Branch, commit, and push work"
+  default_prompt: "Use $shipout to create a branch, commit, and push the current work."
+
+policy:
+  allow_implicit_invocation: false

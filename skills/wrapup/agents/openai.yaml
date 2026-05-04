@@ -1,0 +1,7 @@
+interface:
+  display_name: "Wrapup"
+  short_description: "Parallel review and fix pass"
+  default_prompt: "Use $wrapup to review, fix, and validate the current work."
+
+policy:
+  allow_implicit_invocation: false

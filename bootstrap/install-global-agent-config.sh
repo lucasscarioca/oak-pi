@@ -17,6 +17,6 @@ Copied:
 - agents from agents/
 
 Note:
-- Install extensions, skills, and prompt templates separately with:
+- Install extensions and skills separately with:
   pi install git:github.com/lucasscarioca/oak-pi
 EOF

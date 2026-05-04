@@ -1,0 +1,7 @@
+interface:
+  display_name: "QA Audit"
+  short_description: "Audit test quality and coverage"
+  default_prompt: "Use $qa to audit tests for the current work."
+
+policy:
+  allow_implicit_invocation: false
