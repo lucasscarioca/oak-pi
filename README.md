@@ -8,6 +8,7 @@ My Pi agent setup package.
 - `web-tools` — [README](extensions/web-tools/README.md) — `websearch` and `webfetch`; requires `EXA_API_KEY` and an authenticated local `codex` CLI for deep/fallback behavior.
 - `codex-usage` — [README](extensions/codex-usage/README.md) — Codex usage limit helper and footer summary pinning.
 - `worktrees` — [README](extensions/worktrees/README.md) — git worktree helper with seeded sessions.
+- `wsl-image-paste` — [README](extensions/wsl-image-paste/README.md) — `Alt+V` Windows clipboard image paste workaround for Pi in WSL.
 
 ## Install the package
 
